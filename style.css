@@ -1,0 +1,41 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    background-color: #7fc7ff   ;
+}
+#GreetingText{
+    display: none;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #FCFF00;
+    font-weight: 500;
+    -webkit-text-stroke: 1px #2F3CDE;
+    font-size: 20px;
+}
+#logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#logo img{
+    display: none;
+}
+
+#list{
+    background-color: green;
+    width: 60%;
+    height: 500px;
+    display: inline-block;
+    margin-left: 3%;
+    text-align: center;
+}
+#view{
+    background-color: red;
+    width: 30%;
+    display: inline-block;
+    height: 500px;
+    margin-left: 3%;
+    text-align: center;
+}
