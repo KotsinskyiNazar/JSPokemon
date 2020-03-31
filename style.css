@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400&display=swap');
 *{
     padding: 0;
     margin: 0;
 }
 body{
-    background-color: #7fc7ff   ;
+    background-color: #36A7FF   ;
 }
 #GreetingText{
     display: none;
@@ -11,7 +13,7 @@ body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #FCFF00;
     font-weight: 500;
-    -webkit-text-stroke: 1px #2F3CDE;
+    -webkit-text-stroke: 1.5px #2F3CDE;
     font-size: 20px;
 }
 #logo{
@@ -22,20 +24,114 @@ body{
 #logo img{
     display: none;
 }
-
-#list{
-    background-color: green;
-    width: 60%;
-    height: 500px;
-    display: inline-block;
-    margin-left: 3%;
-    text-align: center;
+.poke{
+    display: none;
 }
-#view{
-    background-color: red;
-    width: 30%;
-    display: inline-block;
-    height: 500px;
-    margin-left: 3%;
-    text-align: center;
+.poke-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	max-width: 60%;
+	float: left;
+	
+}
+.poke-containerInfo{
+	background-color: red;
+	width: 30%;
+	float: right;
+	margin-right: 10%;
+	margin-top: 7%;
+	height: 100px;
+	display: none;
+	transition: top 1s ease-out 0.5s;
+	opacity: 0.7;
+}
+
+.pokemon {
+	border-radius: 20px;
+	box-shadow: 0 2px 15px rgba(100, 100, 100, 0.5);
+	margin: 10px;
+	text-align: center;
+	height: 280px;
+	width: 180px;
+    position: relative;
+}
+
+.card{
+	position: absolute;
+    height: 100%;
+    width: 100%;
+    transform-style: preserve-3d;
+    transition: all 0.6 ease;
+}
+
+/* .card:hover{
+    transform: rotateY(180deg);
+} */
+
+.front{
+	position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.back{
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+	transform: rotateY(180deg);
+	border-radius: 20px;
+}
+
+.stats{
+	margin: 4px 0;
+	text-transform: uppercase;
+	font-size: 12px;
+	font-family: 'rubik';
+}
+
+.stats_title{
+	font-weight: bold;
+	font-family: 'rubik';
+	margin: 10px 0;
+	letter-spacing: 3px;
+	font-size: 17px;
+}
+
+.pokemon .img-container {
+	background-color: #ffffff;
+	border-radius: 50%;
+	margin: 10px 20px;
+	width: 140px;
+	height: 140px;
+}
+
+.pokemon .img-container img {
+	margin-top: 10px;
+	max-width: 90%;
+}
+
+.pokemon .info {
+	margin-top: 10px;
+}
+
+.pokemon .number {
+	background-color: rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+	font-size: 13px;
+	padding: 5px 5px;
+}
+
+.pokemon .name {
+	margin: 15px 0 5px;
+}
+
+.type{
+	font-size: 16px;
 }
