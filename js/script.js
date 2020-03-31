@@ -1,11 +1,12 @@
 $(document).ready(function(){
     $('img').fadeIn(3000);
     $('#GreetingText').fadeIn(2000);
-    $('.poke').fadeIn(6000);
+    $('.poke').fadeIn(3000);
 });
 
 const poke_container = document.getElementById('poke_container');
-const pokemons_number = 10;
+const poke_containerInfo = document.getElementById('poke_containerInfo');
+const pokemons_number = 40;
 const colors = {
 	fire: 'rgb(255, 106, 106)',
 	grass: 'lightgreen',
@@ -36,20 +37,12 @@ const getPokemon = async id => {
 	const pokemon = await res.json();
 	createPokemonCard(pokemon);
 };
-function openbox(id){
-	display = document.getElementById(id).style.display;
- 
-	if(display=='none'){
-	   document.getElementById(id).style.display='block';
-	}else{
-	   document.getElementById(id).style.display='none';
-	}
-}
 
 function createPokemonCard(pokemon) {
 	const pokemonEl = document.createElement('div');
 	pokemonEl.classList.add('pokemon');
-
+	const pokemonEl1 = document.createElement('div');
+	pokemonEl1.classList.add('pokemonb');
 	const poke_types = pokemon.types.map(type => type.type.name);
 	const type = main_types.find(type => poke_types.indexOf(type) > -1);
 	const name = pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
@@ -61,7 +54,13 @@ function createPokemonCard(pokemon) {
 	const poke_moves = pokemon.moves.map(moves => moves.move.name);
 	
 	pokemonEl.style.backgroundColor = color;
-
+	let arr = [name,type,poke_stats_name[0],poke_stats_num[0]
+	,poke_stats_name[1]+poke_stats_num[1]
+	,poke_stats_name[2]+poke_stats_num[2]
+	,poke_stats_name[3]+poke_stats_num[3]
+	,poke_stats_name[4]+poke_stats_num[4]
+	,poke_stats_name[5]+poke_stats_num[5]
+	,poke_weight,poke_moves]
 	const pokeInnerHTML = `
 	<div class="card">
 		<div class="front">
@@ -74,25 +73,34 @@ function createPokemonCard(pokemon) {
 				<small class="type">Type: <span>${type}</span></small>
 			</div>
 			<br>
-			<input type="button" id="but" value="Click"onclick="openbox('poke_containerInfo')">
-		</div>
-        <div class="back">
-			<span class="stats_title"><u>${name}</u></span>
-			<span class="stats"><b>type:</b> ${type}</span>
-			<span class="stats"><b>${poke_stats_name[0]}:</b> ${poke_stats_num[0]}</span>
-			<span class="stats"><b>${poke_stats_name[1]}:</b> ${poke_stats_num[1]}</span>
-			<span class="stats"><b>${poke_stats_name[2]}:</b> ${poke_stats_num[2]}</span>
-			<span class="stats"><b>${poke_stats_name[3]}:</b> ${poke_stats_num[3]}</span>
-			<span class="stats"><b>${poke_stats_name[4]}:</b> ${poke_stats_num[4]}</span>
-			<span class="stats"><b>${poke_stats_name[5]}:</b> ${poke_stats_num[5]}</span>
-			<span class="stats"><b>weight:</b> ${poke_weight}</span>
-			<span class="stats"><b>total moves:</b> ${poke_moves.length}</span>
 		</div>
 	</div>
 	`;
-
+	console.log(arr)
 	pokemonEl.innerHTML = pokeInnerHTML;
-    poke_container.appendChild(pokemonEl);
-    
+	poke_container.appendChild(pokemonEl);
+	const pokeInnerHTML1 = `
+		<span class="stats_title"><u>${name}</u></span>
+		<span class="number">№${pokemon.id.toString().padStart(3, '0')}</span>
+		<span class="stats"><b>type:</b> ${type}</span>
+		<span class="stats"><b>${poke_stats_name[0]}:</b> ${poke_stats_num[0]}</span>
+		<span class="stats"><b>${poke_stats_name[1]}:</b> ${poke_stats_num[1]}</span>
+		<span class="stats"><b>${poke_stats_name[2]}:</b> ${poke_stats_num[2]}</span>
+		<span class="stats"><b>${poke_stats_name[3]}:</b> ${poke_stats_num[3]}</span>
+		<span class="stats"><b>${poke_stats_name[4]}:</b> ${poke_stats_num[4]}</span>
+		<span class="stats"><b>${poke_stats_name[5]}:</b> ${poke_stats_num[5]}</span>
+		<span class="stats"><b>weight:</b> ${poke_weight}</span>
+		<span class="stats"><b>total moves:</b> ${poke_moves.length}</span>
+	`	
+	pokemonEl1.innerHTML = pokeInnerHTML1;
+	poke_containerInfo.appendChild(pokemonEl1);
+};	
+function openbox(id){
+	display = document.getElementById(id).style.display;
+	if(display=='none'){
+	   document.getElementById(id).style.display='block';
+	}else{
+	   document.getElementById(id).style.display='none';
+	}
 }
 fetchPokemons();
